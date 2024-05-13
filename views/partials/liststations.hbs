@@ -1,22 +1,20 @@
 <div class="row">
     <div class="col">
-        <div class="card text-white bg-dark mb-3">
+        <div class="card text-white bg-dark mb-3 d-flex flex-column " style="height: 85%">
             <div class="card-body" >
                 <h5 class="card-title">{{city}}</h5>
+
             </div>
         </div>
     </div>
-    {{#each weather.[1]}} <!-- access only the current weather -->
+    {{#each weather.[0]}} <!-- access only the current weather -->
         <div class="col">
-            <div class="card text-white bg-dark mb-3">
+            <div class="card text-white bg-dark mb-3  d-flex flex-column"  style="height: 85%">
                 <div class="card-body" >
                     <h5 class="card-title">{{@key}}</h5>
-                    <p class="card-text">{{this}}</p>
+                    <p class="card-text">{{this}} {{formatUnit @key}}</p>
                 </div>
             </div>
         </div>
     {{/each}}
-
-
-
 </div>

@@ -5,6 +5,17 @@ const bodyParser = require("body-parser");
 
 const dotenv = require("dotenv");
 
+var hbs = handlebars.create({});
+// helper to print out the units of each details
+hbs.handlebars.registerHelper('formatUnit', function(key) {
+    const unitMap = {
+        'Temperatur': 'Grad',
+        'Wind': 'bft',
+        'Luftdruck': 'hpa',
+    };
+    return unitMap[key];
+});
+
 /* Reading global variables from config file */
 dotenv.config();
 const PORT = process.env.PORT;

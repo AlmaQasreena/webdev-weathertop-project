@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>Wetter</th>
+        <th>Temperatur</th>
+        <th>Wind</th>
+        <th>Luftdruck</th>
+    </tr>
+    </thead>
+    <tbody>
+        {{#each weather}}
+            <tr>
+                <td>{{Wetter}}</td>
+                <td>{{Temperatur}}</td>
+                <td>{{Wind}}</td>
+                <td>{{Luftdruck}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
