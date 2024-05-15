@@ -5,13 +5,23 @@ const bodyParser = require("body-parser");
 
 const dotenv = require("dotenv");
 
-var hbs = handlebars.create({});
+const hbs = handlebars.create({});
 // helper to print out the units of each details
 hbs.handlebars.registerHelper('formatUnit', function(key) {
     const unitMap = {
-        'Temperatur': 'Grad',
-        'Wind': 'bft',
-        'Luftdruck': 'hpa',
+        'temperatur': 'Grad',
+        'wind': 'bft',
+        'luftdruck': 'hpa',
+    };
+    return unitMap[key];
+});
+
+// helper to print out the units of each details
+hbs.handlebars.registerHelper('formatUnit', function(key) {
+    const unitMap = {
+        'temperatur': 'Grad',
+        'wind': 'bft',
+        'luftdruck': 'hpa',
     };
     return unitMap[key];
 });
@@ -28,7 +38,6 @@ app.set('views', './views');
 
 const routes = require("./routes");
 app.use("/", routes);
-
 
 //turn on serving static files (required for delivering css to client)
 app.use(express.static("public"));
