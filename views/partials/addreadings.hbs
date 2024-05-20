@@ -1,0 +1,22 @@
+<form action="/station/{{id}}/addreadings" method="POST">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label for="inputWetter" class="form-label">Code</label>
+            <input placeholder="Code" type="number" class="form-control" id="inputWetter" name="wetter">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputTemperatur" class="form-label">Temperatur</label>
+            <input placeholder="00.00" type="number" step="0.01" min="-999" max="999" class="form-control" id="inputTemperatur" name="temperatur">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputWind" class="form-label">Windgeschwindigkeit</label>
+            <input placeholder="00.00" type="number" step="0.01" min="0" max="100" class="form-control" id="inputWind" name="wind">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputLuftdruck" class="form-label">Luftdruck</label>
+            <input placeholder="00" type="number"  class="form-control" id="inputLuftdruck" name="luftdruck">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Messung Hinzufügen</button>
+</form>
+

@@ -4,20 +4,21 @@
         <div class="card text-white bg-dark mb-3 d-flex flex-column " style="height: 85%">
             <div class="card-body" >
                 <h5 class="card-title">{{city}}</h5>
-
+                <p class="card-text">Lat: {{latitude}} <br>
+                 Lon: {{longitude}}</p>
             </div>
         </div>
     </div>
     {{#each readings.[0]}} <!-- access only the current weather -->
-
+    {{#unless @first}}
         <div class="col">
             <div class="card text-white bg-dark mb-3  d-flex flex-column"  style="height: 85%">
                 <div class="card-body" >
-                    <h5 class="card-title">{{@key}}</h5>
+                    <h5 class="card-title">{{rewriteKey @key}}</h5>
                     <p class="card-text">{{this}} {{formatUnit @key}}</p>
                 </div>
             </div>
         </div>
-
+    {{/unless}}
     {{/each}}
 </div>

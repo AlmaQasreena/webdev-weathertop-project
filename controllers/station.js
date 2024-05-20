@@ -10,10 +10,25 @@ const station = {
         logger.info("Station id = " + stationId);
         const viewData = {
             title: "Stations",
+            id: station.id,
             city: station.city,
+            latitude: station.latitude,
+            longitude: station.longitude,
             readings: readings,
         };
         response.render("station", viewData);
+    },
+    async addReadings(request, response) {
+        const stationId = request.params.id;
+        const newReading = {
+            wetter: Number(request.body.wetter),
+            temperatur: Number(request.body.temperatur),
+            wind: Number(request.body.wind),
+            luftdruck: Number(request.body.luftdruck)
+        };
+        logger.debug("New Reading", newReading);
+        await readingStore.addReadings(stationId, newReading);
+        response.redirect("/stations/" + stationId);
     },
 };
 

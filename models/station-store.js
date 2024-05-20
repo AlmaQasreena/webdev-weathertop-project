@@ -23,7 +23,24 @@ const stationStore = {
             logger.error("Error fetching station", e);
         }
     },
-
+    async removeStation(stationId) {
+        const query = 'DELETE FROM station WHERE id=$1';
+        const values = [stationId];
+        try {
+            await dataStoreClient.query(query, values);
+        } catch (e) {
+            logger.error("Unable to remove station", e);
+        }
+    },
+    async addStation(newStation) {
+        const query = 'INSERT INTO station (CITY,LATITUDE,LONGITUDE) VALUES($1, $2, $3)';
+        const values = [newStation.name, newStation.latitude, newStation.longitude];
+        try {
+            await dataStoreClient.query(query, values);
+        } catch (e) {
+            logger.error("Error adding station", e);
+        }
+    },
 };
 
 module.exports = stationStore;

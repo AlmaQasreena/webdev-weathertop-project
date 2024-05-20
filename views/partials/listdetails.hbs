@@ -1,6 +1,7 @@
 <table class="table">
     <thead>
     <tr>
+        <th>Zeitpunkt</th>
         <th>Wetter</th>
         <th>Temperatur</th>
         <th>Wind</th>
@@ -10,6 +11,7 @@
     <tbody>
         {{#each readings}}
             <tr>
+                <td>{{date_added}}</td>
                 <td>{{wetter}}</td>
                 <td>{{temperatur}}</td>
                 <td>{{wind}}</td>
