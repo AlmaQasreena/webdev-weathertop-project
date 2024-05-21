@@ -30,6 +30,13 @@ const station = {
         await readingStore.addReadings(stationId, newReading);
         response.redirect("/stations/" + stationId);
     },
+    async deleteReadings(request, response) {
+        const stationId = request.params.id;
+        const readingId = request.params.readingid;
+        logger.debug(`Deleting Reading ${readingId} from Playlist ${stationId}`);
+        await readingStore.removeReading(readingId);
+        response.redirect("/stations/" + stationId);
+    },
 };
 
 module.exports = station;

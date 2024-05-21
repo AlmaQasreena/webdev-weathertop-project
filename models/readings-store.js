@@ -7,7 +7,7 @@ const readingStore = {
 
     async getReadingsForStations(stationId) {
         // current weather is the last added data, after query it's the first data in query
-        const query = 'SELECT date_added,wetter,temperatur,wind,luftdruck FROM station_readings WHERE station_id=$1 ORDER BY DATE_ADDED DESC';
+        const query = 'SELECT * FROM station_readings WHERE station_id=$1 ORDER BY DATE_ADDED DESC';
         const values = [stationId];
         try {
             let result = await dataStoreClient.query(query, values);
@@ -23,6 +23,15 @@ const readingStore = {
             await dataStoreClient.query(query, values);
         } catch (e) {
             logger.error("Error adding readings", e);
+        }
+    },
+    async removeReading(readingId) {
+        const query = 'DELETE FROM station_readings WHERE id=$1';
+        const values = [readingId];
+        try {
+            await dataStoreClient.query(query, values);
+        } catch (e) {
+            logger.error("Unable to remove reading from station", e);
         }
     },
 };

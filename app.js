@@ -6,26 +6,6 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
 const hbs = handlebars.create({});
-// helper to print out the units of each details
-hbs.handlebars.registerHelper('rewriteKey', function(key) {
-    const keyMap = {
-        'wetter': 'Wetter',
-        'temperatur': 'Temperatur',
-        'wind': 'Wind',
-        'luftdruck': 'Lufdruck',
-    };
-    return keyMap[key];
-});
-
-// helper to print out the units of each details
-hbs.handlebars.registerHelper('formatUnit', function(key) {
-    const unitMap = {
-        'temperatur': 'Grad',
-        'wind': 'bft',
-        'luftdruck': 'hpa',
-    };
-    return unitMap[key];
-});
 
 /* Reading global variables from config file */
 dotenv.config();

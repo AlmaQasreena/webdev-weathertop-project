@@ -9,16 +9,36 @@
             </div>
         </div>
     </div>
-    {{#each readings.[0]}} <!-- access only the current weather -->
-    {{#unless @first}}
-        <div class="col">
-            <div class="card text-white bg-dark mb-3  d-flex flex-column"  style="height: 85%">
-                <div class="card-body" >
-                    <h5 class="card-title">{{rewriteKey @key}}</h5>
-                    <p class="card-text">{{this}} {{formatUnit @key}}</p>
-                </div>
+    <div class="col">
+        <div class="card text-white bg-dark mb-3  d-flex flex-column"  style="height: 85%">
+            <div class="card-body" >
+                <h5 class="card-title">Wetter</h5>
+                <p class="card-text">{{readings.[0].wetter}}</p>
             </div>
         </div>
-    {{/unless}}
-    {{/each}}
+    </div>
+    <div class="col">
+        <div class="card text-white bg-dark mb-3  d-flex flex-column"  style="height: 85%">
+            <div class="card-body" >
+                <h5 class="card-title">Temperatur</h5>
+                <p class="card-text">{{readings.[0].temperatur}} Grad</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card text-white bg-dark mb-3  d-flex flex-column"  style="height: 85%">
+            <div class="card-body" >
+                <h5 class="card-title">Wind</h5>
+                <p class="card-text">{{readings.[0].wind}} bft</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card text-white bg-dark mb-3  d-flex flex-column"  style="height: 85%">
+            <div class="card-body" >
+                <h5 class="card-title">Luftdruck</h5>
+                <p class="card-text">{{readings.[0].luftdruck}} hpa</p>
+            </div>
+        </div>
+    </div>
 </div>
