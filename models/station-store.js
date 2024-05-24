@@ -33,12 +33,22 @@ const stationStore = {
         }
     },
     async addStation(newStation) {
-        const query = 'INSERT INTO station (CITY,LATITUDE,LONGITUDE) VALUES($1, $2, $3)';
-        const values = [newStation.name, newStation.latitude, newStation.longitude];
+        const query = 'INSERT INTO station (CITY,LATITUDE,LONGITUDE,USER_ID) VALUES($1, $2, $3, $4)';
+        const values = [newStation.name, newStation.latitude, newStation.longitude, newStation.userid];
         try {
             await dataStoreClient.query(query, values);
         } catch (e) {
             logger.error("Error adding station", e);
+        }
+    },
+    async getUserStations(email) {
+        const query = 'SELECT * FROM station WHERE user_id=$1';
+        const values = [email];
+        try {
+            let result = await dataStoreClient.query(query, values);
+            return result.rows;
+        } catch (e) {
+            logger.error("Error fetching stations for user: ", e);
         }
     },
 };
