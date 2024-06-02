@@ -17,8 +17,8 @@ const readingStore = {
         }
     },
     async addReadings(stationId, newReading) {
-        const query = 'INSERT INTO station_readings (WETTER,TEMPERATUR,WIND,LUFTDRUCK,STATION_ID) VALUES($1, $2, $3, $4, $5)';
-        const values = [newReading.wetter, newReading.temperatur, newReading.wind, newReading.luftdruck, stationId];
+        const query = 'INSERT INTO station_readings (WETTER,TEMPERATUR,WIND,LUFTDRUCK,DEG,STATION_ID) VALUES($1, $2, $3, $4, $5, $6)';
+        const values = [newReading.wetter, newReading.temperatur, newReading.wind, newReading.luftdruck, newReading.windrichtung, stationId];
         try {
             await dataStoreClient.query(query, values);
         } catch (e) {
@@ -34,6 +34,7 @@ const readingStore = {
             logger.error("Unable to remove reading from station", e);
         }
     },
+
 };
 
 module.exports = readingStore;

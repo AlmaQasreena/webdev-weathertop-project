@@ -16,7 +16,7 @@ router.get("/stations/:id", auth.protected, station.index);
 router.post("/station/:id/addreadings", auth.protected, station.addReadings);
 router.get('/station/:id/deletereadings/:readingid', auth.protected, station.deleteReadings);
 
-//router.get('/login', accounts.login);
+// router.get('/login', accounts.login);
 router.get('/signup', accounts.signup);
 router.get('/logout', accounts.logout);
 router.post('/register', accounts.register);

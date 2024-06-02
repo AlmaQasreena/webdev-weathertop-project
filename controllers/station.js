@@ -1,12 +1,14 @@
 const logger = require("../utils/logger.js");
 const stationStore = require("../models/station-store"); //include the models
 const readingStore = require("../models/readings-store.js");
+const stationAnalytics = require("../utils/station-analytics.js");
 
 const station = {
     async index(request, response) {
         const stationId = request.params.id;
         const station = await stationStore.getStation(stationId);
-        const readings = await readingStore.getReadingsForStations(stationId);
+        let readings = await readingStore.getReadingsForStations(stationId);
+        readings = stationAnalytics.convertCodeWind(readings);
         logger.info("Station id = " + stationId);
         const viewData = {
             title: "Stations",
@@ -15,6 +17,7 @@ const station = {
             latitude: station.latitude,
             longitude: station.longitude,
             readings: readings,
+            readingSummary: stationAnalytics.attribute_summary(readings)
         };
         response.render("station", viewData);
     },
@@ -24,6 +27,7 @@ const station = {
             wetter: Number(request.body.wetter),
             temperatur: Number(request.body.temperatur),
             wind: Number(request.body.wind),
+            windrichtung:  Number(request.body.windrichtung),
             luftdruck: Number(request.body.luftdruck)
         };
         logger.debug("New Reading", newReading);
