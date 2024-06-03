@@ -51,7 +51,7 @@ const stationAnalytics = {
             }
         })
     },
-    
+
     getMinimumReading(readings) {
         let min = null;
         if (readings.length > 0) {
@@ -76,15 +76,27 @@ const stationAnalytics = {
         }
         return max;
     },
-    trends(readings){
-        let lastTwo = readings.slice(0,2);
+    trends(readings,attribute){
+        let latest = readings.slice(0,2); // get the 2 latest reading (first 2 in the array)
         let trend = ``;
-        if( lastTwo[0] >= lastTwo[1]){
-            trend =`<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" className="bi bi-arrow-up-right" viewBox="0 0 16 16 " style="position: absolute; top: 60px; right: 20px;">
+        let color = "";
+        switch(attribute){
+            case "temperatur":
+                color = "grey";
+                break;
+            case "wind":
+                color = "orange";
+                break;
+            case "luftdruck":
+                color = "yellow";
+                break;
+        }
+        if( latest[0] >= latest[1]){
+            trend =`<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="${color}" className="bi bi-arrow-up-right" viewBox="0 0 16 16 " style="position: absolute; top: 60px; right: 20px;">
                         <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z"/>
                     </svg>`;
         } else {
-            trend = `<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-arrow-down-right" viewBox="0 0 16 16 " style="position: absolute; top: 60px; right: 20px;">
+            trend = `<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="${color}" class="bi bi-arrow-down-right" viewBox="0 0 16 16 " style="position: absolute; top: 60px; right: 20px;">
                         <path fill-rule="evenodd" d="M14 13.5a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1 0-1h4.793L2.146 2.854a.5.5 0 1 1 .708-.708L13 12.293V7.5a.5.5 0 0 1 1 0z"/>
                 </svg>`;
         }
@@ -94,13 +106,13 @@ const stationAnalytics = {
         let readingSummary = [];
         const attributes = ["temperatur", "wind", "luftdruck"];
         for (const attribute of attributes) {
-            let list_attribute = [];
-            for (const element of readings) {
-                list_attribute.push(element[attribute]);
+            let attribute_readings = [];
+            for (const reading of readings) {
+                attribute_readings.push(reading[attribute]); // the last readings added will be the first one in this array
             }
-            let minReading = this.getMinimumReading(list_attribute);
-            let maxReading = this.getMaximumReading(list_attribute);
-            let trends = this.trends(list_attribute);
+            let minReading = this.getMinimumReading(attribute_readings);
+            let maxReading = this.getMaximumReading(attribute_readings);
+            let trends = this.trends(attribute_readings,attribute);
             readingSummary.push({minReading: minReading, maxReading: maxReading, trend: trends});
         }
         return readingSummary;
