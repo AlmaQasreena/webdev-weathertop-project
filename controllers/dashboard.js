@@ -11,8 +11,6 @@ const dashboard = {
         //const city = await stationStore.getAllStations();
         const city = await stationStore.getUserStations(loggedInUser.id);
         let station =[];
-
-
         for (let i= 0; i<city.length; i++) {
             let readings = await readingStore.getReadingsForStations(i+1);
             readings = stationAnalytics.convertCodeWind(readings);

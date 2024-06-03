@@ -1,0 +1,34 @@
+<div class="ui segment" id="chart"></div>
+<script>
+    const data = {
+        labels: [
+            {{#each forecast.trendLabels}}
+                "{{this}}",
+            {{/each}}
+        ],
+        datasets: [
+            {
+                name: "Temperatur", type: "line",
+                values: [
+                    {{#each forecast.tempTrend}}
+                        {{this}},
+                    {{/each}}
+                ]
+            },
+            {
+                name: "Windgeschwindigkeit", type: "line",
+                values: [
+                    {{#each forecast.windTrend}}
+                        {{this}},
+                    {{/each}}
+                ]
+            }
+        ]
+    }
+    const chart = new frappe.Chart("#chart", {
+        title: "Weather Trend (5 day/ 3 hour)",
+        data: data,
+        type: 'line',
+        height: 250,
+    })
+</script>

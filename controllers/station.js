@@ -3,12 +3,14 @@ const stationStore = require("../models/station-store"); //include the models
 const readingStore = require("../models/readings-store.js");
 const stationAnalytics = require("../utils/station-analytics.js");
 
+
 const station = {
     async index(request, response) {
         const stationId = request.params.id;
         const station = await stationStore.getStation(stationId);
         let readings = await readingStore.getReadingsForStations(stationId);
         readings = stationAnalytics.convertCodeWind(readings);
+        let forecast = await stationStore.forecastChart(station.latitude,station.longitude);
         logger.info("Station id = " + stationId);
         const viewData = {
             title: "Stations",
@@ -17,6 +19,7 @@ const station = {
             latitude: station.latitude,
             longitude: station.longitude,
             readings: readings,
+            forecast: forecast,
             readingSummary: stationAnalytics.attribute_summary(readings)
         };
         response.render("station", viewData);
@@ -41,6 +44,8 @@ const station = {
         await readingStore.removeReading(readingId);
         response.redirect("/stations/" + stationId);
     },
+
+
 };
 
 module.exports = station;
