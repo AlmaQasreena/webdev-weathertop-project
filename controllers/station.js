@@ -10,7 +10,7 @@ const station = {
         const station = await stationStore.getStation(stationId);
         let readings = await readingStore.getReadingsForStations(stationId);
         readings = stationAnalytics.convertCodeWind(readings);
-        let forecast = await stationStore.forecastChart(station.latitude,station.longitude);
+        const forecast = await stationStore.forecastChart(station.latitude,station.longitude);
         logger.info("Station id = " + stationId);
         const viewData = {
             title: "Stations",
