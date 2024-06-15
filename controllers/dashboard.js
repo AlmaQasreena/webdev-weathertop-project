@@ -8,7 +8,6 @@ const dashboard = {
     async index(request, response) {
         logger.info("dashboard rendering");
         const loggedInUser = await accounts.getCurrentUser(request);
-        //const city = await stationStore.getAllStations();
         const city = await stationStore.getUserStations(loggedInUser.id);
         let station =[];
         for (let i= 0; i<city.length; i++) {
