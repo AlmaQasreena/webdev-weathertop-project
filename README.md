@@ -3,7 +3,7 @@ HEAD
 # mi-weathertop_starter
 
 This is a 4th Semester Web Technology Project in my course Artificial Intelligence & Data Science (B. Sc.). The task is as follows:
-- Develope a website which allows user to manage a list of weather stations and display the current and pass weather measurement data using Model-View-Controller.
+- Develope a local website which allows user to manage a list of weather stations and display the current and pass weather measurement data using Model-View-Controller.
 - Integrate the page to display data from a database using PostgreSQL.
 - Visualize the data from OpenWeather API to be displayed on the website.
 
