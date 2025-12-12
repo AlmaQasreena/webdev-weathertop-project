@@ -1,5 +1,5 @@
 
-# mi-weathertop_starter
+# Weathertop
 
 This is a 4th Semester Web Technology Project in my course Artificial Intelligence & Data Science (B. Sc.). The task is as follows:
 - Develope a Node.js web application which allows user to manage a list of weather stations and display the current and pass weather measurement data using Model-View-Controller.
